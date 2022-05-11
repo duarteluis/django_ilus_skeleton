@@ -1,0 +1,6 @@
+# https://docs.djangoproject.com/en/4.0/topics/auth/passwords/#using-argon2-with-django
+django[argon2] # Argon2 for the password hashing
+
+# Plugins
+
+django-simple-menu # https://github.com/jazzband/django-simple-menu
