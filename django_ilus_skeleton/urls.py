@@ -19,6 +19,7 @@ from two_factor.admin import AdminSiteOTPRequired
 
 from two_factor.urls import urlpatterns as tf_urls
 from apps.pages.urls import urlpatterns as pages_urls
+from core.users.urls import urlpatterns as users_urls
 
 
 admin.site.__class__ = AdminSiteOTPRequired
@@ -26,5 +27,6 @@ admin.site.__class__ = AdminSiteOTPRequired
 urlpatterns = [
     path('', include(tf_urls)),
     path('', include(pages_urls)),
+    path('account/', include(users_urls)),
     path('admin/', admin.site.urls),
 ]

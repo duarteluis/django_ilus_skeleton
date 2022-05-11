@@ -3,8 +3,6 @@
 	manage.py,3\1\3156ad13e4d695cd526bbb7b031016ecba842270
 Y
 )django_ilus_skeleton/settings/__init__.py,4\7\47f23d1eaf9365e0bdc1f5d2150d83062950c0b1
-C
-core/users/views.py,b\7\b72d11101c2e14cccf4d57c5cdf5e99d78aad431
 Q
 !core/users/migrations/__init__.py,3\c\3c74c238448d0ad4078f7968f1cadd16c5cfdc03
 B

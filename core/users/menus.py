@@ -24,9 +24,10 @@ Menu.add_item("user", MenuItem("Login",
 Menu.add_item("user", MenuItem(profile_title,
                                reverse('two_factor:profile'),
                                check=lambda request: request.user.is_authenticated))
-#Menu.add_item("user", MenuItem("Logout",
-#                               reverse('django.contrib.auth.views.logout'),
-#                               check=lambda request: request.user.is_authenticated))
+
+Menu.add_item("user", MenuItem("Logout",
+                               reverse('logout'),
+                               check=lambda request: request.user.is_authenticated))
 
 # this only shows to superusers
 Menu.add_item("user", MenuItem("Admin",
