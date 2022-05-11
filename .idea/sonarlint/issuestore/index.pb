@@ -1,0 +1,27 @@
+
+9
+	manage.py,3\1\3156ad13e4d695cd526bbb7b031016ecba842270
+Y
+)django_ilus_skeleton/settings/__init__.py,4\7\47f23d1eaf9365e0bdc1f5d2150d83062950c0b1
+C
+core/users/views.py,b\7\b72d11101c2e14cccf4d57c5cdf5e99d78aad431
+Q
+!core/users/migrations/__init__.py,3\c\3c74c238448d0ad4078f7968f1cadd16c5cfdc03
+B
+core/users/apps.py,c\3\c34a7ac3e38a5d3316dbaed341ab82485ecce24f
+C
+apps/pages/tests.py,d\b\db53dcb55a2b5d9e02bdca12ad3012d885d82784
+C
+apps/pages/admin.py,f\b\fbf15e6cba2da90fde83e6f02b63bf4bb1396500
+D
+apps/pages/models.py,0\4\041e34455af487e8de782ab9cf81b361e2d2120e
+F
+apps/pages/__init__.py,7\7\7712d4aefcec8e15f5fdd4cdf54d71ca2b887dbc
+Q
+!apps/pages/migrations/__init__.py,0\1\01143123f543c5ee721d2dc39a1f46268718a668
+B
+apps/pages/apps.py,0\8\08d1412609b8082b184dc06748e8564f36fab9cb
+F
+core/users/__init__.py,5\2\521ac5bb542056aa37a1e774d87ef86512e34ccc
+@
+core/__init__.py,c\e\ce4f796c5be8947b7ba7705fab2b891600f264e5

@@ -1,0 +1,32 @@
+{% extends "bootstrap5/bootstrap5.html" %}
+{% load menu %}
+
+{% block bootstrap5_extra_head %}{% endblock %}
+
+{% block bootstrap5_before_content %}
+    {% generate_menu %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'home' %}">Ilus Skeleton</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    {% with menu=menus.main %}{% include "menu.html" %}{% endwith %}
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    {% with menu=menus.user %}{% include "menu_drop_down.html" %}{% endwith %}
+              </ul>
+            </div>
+          </div>
+        </nav>
+{% endblock %}
+
+{% block bootstrap5_content %} CONTENT BASE {% endblock %}
+
+{% block bootstrap5_after_content %}{% endblock %}
+
+{% block bootstrap5_extra_script %}{% endblock %}
+

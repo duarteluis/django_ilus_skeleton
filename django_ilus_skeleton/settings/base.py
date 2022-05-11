@@ -1,6 +1,15 @@
 # Django settings base project.
 
 from pathlib import Path
+from datetime import timedelta
+
+# snippet for django-fernet-fields on django 4
+# https://stackoverflow.com/questions/70382084/import-error-force-text-from-django-utils-encoding
+import django
+from django.utils.encoding import force_str
+django.utils.encoding.force_text = force_str
+# end of snippet
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -68,14 +77,6 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -98,20 +99,48 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    # django-two-factor-auth (place after AuthenticationMiddleware)
+    'django_otp.middleware.OTPMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pwned_passwords_django.middleware.PwnedPasswordsMiddleware',
+
+    # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
+    # It only formats user lockout messages and renders Axes lockout responses
+    # on failed user authentication attempts from login views.
+    # If you do not want Axes to override the authentication response
+    # you can skip installing the middleware and use your own views.
+    'axes.middleware.AxesMiddleware',
 ]
 
 ROOT_URLCONF = 'django_ilus_skeleton.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'django_ilus_skeleton.wsgi.application'
+
+# django-axes
+AXES_FAILURE_LIMIT = 10
+AXES_COOLOFF_TIME = timedelta(minutes=10)
+AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
+AXES_LOCKOUT_TEMPLATE = 'core/user/lockout.html'
+
+# django-two-factor-auth
+TWO_FACTOR_PATCH_ADMIN = True
+TWO_FACTOR_LOGIN_TIMEOUT = 600
+PHONENUMBER_DEFAULT_REGION = 'CH'
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = 'two_factor:profile'
+LOGOUT_REDIRECT_URL = 'two_factor:login'
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -130,6 +159,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
+
+    # External plugins
+
+    # django-two-factor-auth
+    'django_otp',
+    'django_otp.plugins.otp_static',
+    'django_otp.plugins.otp_totp',
+    'otp_yubikey',
+    'two_factor',
+
+    # django-axes
+    'axes',
+
+    # django-bootstrap-v5
+    'bootstrap5',
 
     # django-simple-menu
     'menu',
@@ -137,19 +182,54 @@ INSTALLED_APPS = [
     # local apps
     'core.users',
     'apps.pages',
-
-
 ]
+
+# Default primary key field type
+# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'pwned_passwords_django.validators.PwnedPasswordsValidator',
+        'OPTIONS': {
+            'error_message': 'That password was pwned',
+            'help_message': 'Your password can\'t be a commonly used password.',
+        }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {'min_length': 15}
+    },
+    {
+        'NAME': 'core.users.validators.ConsecutivelyRepeatingCharacterValidator',
+        'OPTION': {'length': 3}
+    },
+    {
+        'NAME': 'core.users.validators.ConsecutivelyIncreasingIntegerValidator',
+        'OPTION': {'length': 3}
+    },
+    {
+        'NAME': 'core.users.validators.ConsecutivelyDecreasingIntegerValidator',
+        'OPTION': {'length': 3}
+    },
+    {
+        'NAME': 'core.users.validators.UppercaseValidator',
+    },
+    {
+        'NAME': 'core.users.validators.LowercaseValidator',
+    },
+    {
+        'NAME': 'core.users.validators.SymbolValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'core.users.validators.ContextValidator',
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
@@ -159,10 +239,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.ScryptPasswordHasher',
+]
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+AUTHENTICATION_BACKENDS = [
+    # AxesBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
+    'axes.backends.AxesBackend',
+
+    # Django ModelBackend is the default authentication backend.
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+FERNET_KEYS = [
+    'django-insecure-2-hgml%)xg2=zya3e3+wkto+(yp!^0+g)0!v#e*l5eby!h3tp#',
+]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

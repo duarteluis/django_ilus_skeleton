@@ -2,5 +2,10 @@
 django[argon2] # Argon2 for the password hashing
 
 # Plugins
+django-two-factor-auth[phonenumbers] # https://github.com/jazzband/django-two-factor-auth
+django-otp-yubikey # https://github.com/jazzband/django-two-factor-auth
+django-axes # https://github.com/jazzband/django-axes
+pwned-passwords-django # https://github.com/ubernostrum/pwned-passwords-django/
+django-bootstrap-v5 # https://github.com/zelenij/django-bootstrap-v5
 
 django-simple-menu # https://github.com/jazzband/django-simple-menu
