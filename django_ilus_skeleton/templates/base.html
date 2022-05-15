@@ -13,12 +13,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    {% with menu=menus.main %}{% include "menu.html" %}{% endwith %}
-                    <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    {% with menu=menus.user %}{% include "menu_drop_down.html" %}{% endwith %}
-              </ul>
+                    {% with menu=menus.main %}{% include "navbar_menu.html" %}{% endwith %}
+                    {% with menu=menus.user %}{% include "navbar_menu.html" %}{% endwith %}
+                </ul>
             </div>
           </div>
         </nav>

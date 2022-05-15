@@ -1,6 +1,0 @@
-{% for item in menu %}
-    {% if item.separator %}<li>------------</li>{% endif %}
-    <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="{{ item.url }}">{{ item.title }}</a>
-    </li>
-{% endfor %}

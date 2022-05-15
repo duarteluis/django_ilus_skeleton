@@ -7,7 +7,7 @@ class ConsecutivelyRepeatingCharacterValidator(object):
     def __init__(self, length=3):
         self.length = length
 
-    def validate(self, password):
+    def validate(self, password, user=None):
         for character in password:
             if password.count(character) >= self.length:
                 check_character = character * self.length
@@ -28,7 +28,7 @@ class ConsecutivelyIncreasingIntegerValidator(object):
     def __init__(self, length=3):
         self.length = length
 
-    def validate(self, password):
+    def validate(self, password, user=None):
         for character in password:
             if character.isdigit():
                 count = 0
@@ -60,7 +60,7 @@ class ConsecutivelyDecreasingIntegerValidator(object):
     def __init__(self, length=3):
         self.length = length
 
-    def validate(self, password):
+    def validate(self, password, user=None):
         for character in password:
             if character.isdigit():
                 count = 0
@@ -89,7 +89,7 @@ class ConsecutivelyDecreasingIntegerValidator(object):
 
 
 class ContextValidator:
-    def validate(self, password):
+    def validate(self, password, user=None):
         context = [
             "context_word",
         ]
@@ -105,7 +105,7 @@ class ContextValidator:
 
 
 class UppercaseValidator(object):
-    def validate(self, password):
+    def validate(self, password, user=None):
         if not re.findall('[A-Z]', password):
             raise ValidationError(
                 _("The password must contain at least 1 uppercase letter, A-Z."),
@@ -119,7 +119,7 @@ class UppercaseValidator(object):
 
 
 class LowercaseValidator(object):
-    def validate(self, password):
+    def validate(self, password, user=None):
         if not re.findall('[a-z]', password):
             raise ValidationError(
                 _("The password must contain at least 1 lowercase letter, a-z."),
@@ -133,7 +133,7 @@ class LowercaseValidator(object):
 
 
 class SymbolValidator(object):
-    def validate(self, password):
+    def validate(self, password, user=None):
         if not re.findall('[()[\]{}|\\`~!@#$%^&*_\-+=;:\'",<>./?]', password):
             raise ValidationError(
                 _("The password must contain at least 1 symbol: " +
