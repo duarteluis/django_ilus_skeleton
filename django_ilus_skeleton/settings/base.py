@@ -1,6 +1,7 @@
 # Django settings base project.
-
+from decouple import config, Csv
 from pathlib import Path
+from dj_database_url import parse as db_url
 from datetime import timedelta
 
 # snippet for django-fernet-fields on django 4
@@ -98,8 +99,6 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
-
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -258,6 +257,25 @@ AUTHENTICATION_BACKENDS = [
 FERNET_KEYS = [
     'django-insecure-2-hgml%)xg2=zya3e3+wkto+(yp!^0+g)0!v#e*l5eby!h3tp#',
 ]
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = config('SECRET_KEY')
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = config('DEBUG', default=False, cast=bool)
+TEMPLATE_DEBUG = config('TEMPLATE_DEBUG', default=False, cast=bool)
+
+DATABASES = {
+    'default': config(
+        'DATABASE_URL',
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
+        cast=db_url
+    )
+}
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
