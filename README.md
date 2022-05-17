@@ -21,7 +21,6 @@
 ## Work to do for the next steps
 
 - production side finalise
-- 12 factor finalise with the settings
 - cookiecutter production
 - https://github.com/jazzband/django-user-sessions
 - 

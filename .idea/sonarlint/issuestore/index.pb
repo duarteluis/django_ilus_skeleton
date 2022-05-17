@@ -35,8 +35,6 @@ C
 core/users/admin.py,9\c\9ca799e2f8fa4b9c5b76e44cfe4958f48867a05b
 D
 core/users/models.py,2\c\2c58fb3c346038b2495e000a17e591b683c1620b
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 C
 apps/pages/views.py,1\d\1dad68663628fdb166550d3641bb829246049b19
 F
@@ -47,21 +45,9 @@ U
 %core/users/migrations/0001_initial.py,3\a\3af2acd41458924a1c5a7fdab18e639d35a9e426
 C
 core/users/forms.py,c\1\c15ff6d395627cb7fab7947d208864bc46bc2b01
-U
-%django_ilus_skeleton/settings/base.py,3\6\362802b9d6cac7a94e8ff20ad9f7ebc9c9b06d64
 \
 ,django_ilus_skeleton/settings/development.py,9\1\916bfa4ea35791aab2751cb345ca98f2ea24796b
-]
--django_ilus_skeleton/templates/_old_base.html,c\f\cfb86553f7a1aece57c525d15ed32869d0c42c27
 C
 apps/pages/menus.py,e\7\e7ff97306d2267c6943e6dfeac8148bd561179cd
-d
-4django_ilus_skeleton/templates/two_factor/_base.html,4\c\4c0a783fd865a9c239ddbc564fa1b9ab1350f7b2
 Z
 *apps/pages/templates/apps/pages/about.html,c\4\c4a6b0499b56f91cfc9c50711b98a159915549bd
-Y
-)apps/pages/templates/apps/pages/home.html,8\2\822d5a62e8fbd3fc3e15ed1544a0e5a2bcddc3a8
-b
-2django_ilus_skeleton/templates/menu_drop_down.html,f\0\f0530fa9126a82389f3c6abaccc38cd4bad94d89
-X
-(django_ilus_skeleton/templates/menu.html,b\f\bfbf855e2bb8abad9bf608dec9c4abad0aa5f35d

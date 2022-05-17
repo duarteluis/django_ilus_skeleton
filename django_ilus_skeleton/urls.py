@@ -26,7 +26,9 @@ admin.site.__class__ = AdminSiteOTPRequired
 
 urlpatterns = [
     path('', include(tf_urls)),
+    path('', include('user_sessions.urls', 'user_sessions')),
     path('', include(pages_urls)),
     path('account/', include(users_urls)),
     path('admin/', admin.site.urls),
+
 ]

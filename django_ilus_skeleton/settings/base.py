@@ -102,7 +102,8 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    # 'django.contrib.sessions.middleware.SessionMiddleware', replaced with below
+    'user_sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,7 +138,7 @@ TWO_FACTOR_LOGIN_TIMEOUT = 600
 PHONENUMBER_DEFAULT_REGION = 'CH'
 LOGIN_URL = 'two_factor:login'
 LOGIN_REDIRECT_URL = 'two_factor:profile'
-LOGOUT_REDIRECT_URL = 'two_factor:login'
+LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -154,7 +155,8 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    # 'django.contrib.sessions', replaced with below
+    'user_sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
@@ -276,6 +278,10 @@ DATABASES = {
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+# django-user-sessions # https://github.com/jazzband/django-user-sessions
+SESSION_ENGINE = 'user_sessions.backends.db'
+SILENCED_SYSTEM_CHECKS = ['admin.E410',]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
