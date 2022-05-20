@@ -5,7 +5,7 @@
 - A custom user is implemented
 - MFA factor is implemented
 - Quality password is implemented (also control if is it pwned)
-- 
+- 12 factor with the settings (.env)
 
 ### To do for Yubikey function
 > from otp_yubikey.models import ValidationService

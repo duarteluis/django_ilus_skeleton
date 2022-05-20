@@ -11,3 +11,4 @@ python-decouple # https://github.com/henriquebastos/python-decouple
 dj-database-url # https://github.com/kennethreitz/dj-database-url
 django-user-sessions # https://github.com/jazzband/django-user-sessions
 django-simple-menu # https://github.com/jazzband/django-simple-menu
+docutils # https://docutils.sourceforge.io

@@ -112,6 +112,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pwned_passwords_django.middleware.PwnedPasswordsMiddleware',
+    'django.contrib.admindocs.middleware.XViewMiddleware',
 
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     # It only formats user lockout messages and renders Axes lockout responses
@@ -156,12 +157,15 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     # 'django.contrib.sessions', replaced with below
+    # django-user-sessions
     'user_sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.humanize',
+    'django.contrib.admindocs',
 
+    # ##################################
     # External plugins
 
     # django-two-factor-auth
