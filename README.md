@@ -22,5 +22,8 @@
 
 - production side finalise
 - cookiecutter production
-- https://github.com/jazzband/django-user-sessions
+- user change password
+- meta 
+- robot.txt
+- sitemap
 - 

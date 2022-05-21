@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from two_factor.admin import AdminSiteOTPRequired
+from django.conf import settings
 
 from two_factor.urls import urlpatterns as tf_urls
 from apps.pages.urls import urlpatterns as pages_urls
@@ -33,3 +34,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('__debug__/', include('debug_toolbar.urls')),
+    ]
