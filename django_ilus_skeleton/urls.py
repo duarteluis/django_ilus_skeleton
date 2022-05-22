@@ -25,11 +25,17 @@ from core.users.urls import urlpatterns as users_urls
 
 admin.site.__class__ = AdminSiteOTPRequired
 
+
+admin.site.site_header = 'Ilus skeleton'    # default: "Django Administration"
+admin.site.index_title = 'Réglages généraux'    # default: "Site administration"
+admin.site.site_title = 'iLus Skeleton'     # default: "Django site admin"
+
 urlpatterns = [
     path('', include(tf_urls)),
     path('', include('user_sessions.urls', 'user_sessions')),
     path('', include(pages_urls)),
     path('account/', include(users_urls)),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
 

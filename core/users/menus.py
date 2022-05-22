@@ -10,7 +10,7 @@ def profile_title(request):
     # item will have a check that does that for us
     name = request.user.get_full_name() or request.user
 
-    return "MFA compte de %s" % name
+    return f"Compte de {name}"
 
 
 myaccount_children = (
@@ -18,11 +18,14 @@ myaccount_children = (
     MenuItem("Login", reverse('two_factor:login'), check=lambda request: not request.user.is_authenticated),
 
     # this will only be shown to logged in users and also demonstrates how to use
-    MenuItem(profile_title, reverse('two_factor:profile'), check=lambda request: request.user.is_authenticated),
+    MenuItem("Réglage MFA", reverse('two_factor:profile'), check=lambda request: request.user.is_authenticated),
+    MenuItem("Changer le mot de passe", reverse('password_change'), check=lambda  request: request.user.is_authenticated),
     MenuItem("Logout", reverse('logout'), check=lambda request: request.user.is_authenticated),
     # this only shows to superusers
-    MenuItem("Admin", reverse("admin:index"), separator=True, check=lambda request: request.user.is_superuser)
+    MenuItem("Admin", reverse("admin:index"), separator=True, check=lambda request: request.user.is_superuser),
+    # this only shows to superusers
+    MenuItem("Sessions", reverse("user_sessions:session_list"), separator=False, check=lambda request: request.user.is_superuser),
 )
 
 # Add a My Account item to our user menu
-Menu.add_item("user", MenuItem("Profile", reverse("two_factor:login"), weight=10, children=myaccount_children))
+Menu.add_item("user", MenuItem(profile_title, reverse("two_factor:login"), weight=10, children=myaccount_children))
