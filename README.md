@@ -3,6 +3,9 @@
 ## Skeleton django project with some security inputs
 
 - A custom user is implemented
+  - Login
+  - Logout
+  - Change password
 - MFA factor is implemented
 - Quality password is implemented (also control if is it pwned)
 - 12 factor with the settings (.env)
@@ -22,7 +25,6 @@
 
 - production side finalise
 - cookiecutter production
-- user change password
 - meta 
 - robot.txt
 - sitemap
