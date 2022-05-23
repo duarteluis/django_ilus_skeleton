@@ -52,18 +52,18 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = 'media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = ''
+MEDIA_URL = 'media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = 'static'
 
 # Static files (CSS, JavaScript, Images)
 # URL prefix for static files.
@@ -73,6 +73,7 @@ STATIC_URL = 'static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
+    str(BASE_DIR / 'core/users/static'),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -283,9 +284,12 @@ DATABASES = {
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-# django-user-sessions # https://github.com/jazzband/django-user-sessions
+# django-user-sessions https://github.com/jazzband/django-user-sessions
 SESSION_ENGINE = 'user_sessions.backends.db'
 SILENCED_SYSTEM_CHECKS = ['admin.E410',]
+
+# django-simple-menu https://github.com/jazzband/django-simple-menu
+MENU_SELECT_PARENTS = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

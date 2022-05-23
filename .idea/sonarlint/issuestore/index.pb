@@ -41,13 +41,21 @@ F
 core/users/managers.py,a\6\a64b682101bba272396ec22b6095b47b77b51970
 H
 core/users/validators.py,d\e\de3701c76991f63c9e0efcf5b0142b5138cbfa3a
-U
-%core/users/migrations/0001_initial.py,3\a\3af2acd41458924a1c5a7fdab18e639d35a9e426
 C
 core/users/forms.py,c\1\c15ff6d395627cb7fab7947d208864bc46bc2b01
 \
 ,django_ilus_skeleton/settings/development.py,9\1\916bfa4ea35791aab2751cb345ca98f2ea24796b
 C
 apps/pages/menus.py,e\7\e7ff97306d2267c6943e6dfeac8148bd561179cd
-Z
-*apps/pages/templates/apps/pages/about.html,c\4\c4a6b0499b56f91cfc9c50711b98a159915549bd
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+b
+2django_ilus_skeleton/templates/navbar_submenu.html,d\e\dedb0dd088954f1fc14bd56e9b7dafdea8605a95
+E
+requirements/base.txt,a\5\a53d00307871abc09608b3e4fdabb0cfc4ae7d9b
+L
+django_ilus_skeleton/urls.py,e\4\e49b5587d997fc0d88cba63ae1ed53df91be5077
+B
+apps/pages/urls.py,0\5\05ffa10c6928c4fbc7087e9d086e0bad13197a22
+C
+core/users/menus.py,f\d\fd7ad649ab4ac0bd7e114a34ab844ff3925178b5
