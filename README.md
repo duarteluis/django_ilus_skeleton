@@ -10,7 +10,7 @@
 - Quality password is implemented (also control if is it pwned)
 - 12 factor with the settings (.env)
 
-### To do for Yubikey function
+### To do for Yubikey function on "python manage.py shell"
 > from otp_yubikey.models import ValidationService
 > 
 > ValidationService.objects.create(
@@ -24,8 +24,6 @@
 ## Work to do for the next steps
 
 - production side finalise
+- session (geoip to introduce)
+- meta
 - cookiecutter production
-- meta 
-- robot.txt
-- sitemap
-- 

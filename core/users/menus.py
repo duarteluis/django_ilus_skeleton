@@ -28,4 +28,4 @@ myaccount_children = (
 )
 
 # Add a My Account item to our user menu
-Menu.add_item("user", MenuItem(profile_title, reverse("two_factor:login"), weight=10, children=myaccount_children))
+Menu.add_item("user", MenuItem("Profile", reverse("two_factor:login"), weight=10, children=myaccount_children))

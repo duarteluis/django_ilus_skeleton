@@ -1,7 +1,9 @@
 {% extends "bootstrap5/bootstrap5.html" %}
 {% load menu %}
 
-{% block bootstrap5_extra_head %}{% endblock %}
+{% block bootstrap5_extra_head %}
+    {% include 'session_security/all.html' %}
+{% endblock %}
 
 {% block bootstrap5_before_content %}
     {% generate_menu %}

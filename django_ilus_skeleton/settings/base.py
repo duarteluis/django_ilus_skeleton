@@ -13,7 +13,7 @@ django.utils.encoding.force_text = force_str
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -82,7 +82,7 @@ STATICFILES_DIRS = (
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'django_ilus_skeleton/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -90,6 +90,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # django-auto-logout
+                'django_auto_logout.context_processors.auto_logout_client',
             ],
         },
     },
@@ -114,6 +116,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'pwned_passwords_django.middleware.PwnedPasswordsMiddleware',
     'django.contrib.admindocs.middleware.XViewMiddleware',
+
+    # django-auto-logout
+    # append after default middlewares
+    'django_auto_logout.middleware.auto_logout',
+
 
     # AxesMiddleware should be the last middleware in the MIDDLEWARE list.
     # It only formats user lockout messages and renders Axes lockout responses
@@ -144,6 +151,15 @@ LOGOUT_REDIRECT_URL = 'home'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
+# django-auto-logout
+from datetime import timedelta
+
+AUTO_LOGOUT = {
+    'IDLE_TIME': timedelta(minutes=20),
+    'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
+    'SESSION_TIME': timedelta(hours=1),
+}
+
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
@@ -157,7 +173,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    # 'django.contrib.sessions', replaced with below
+    # 'django.contrib.sessions', # replaced with below
     # django-user-sessions
     'user_sessions',
     'django.contrib.messages',
@@ -165,9 +181,13 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.humanize',
     'django.contrib.admindocs',
+    'django.contrib.sitemaps',
 
     # ##################################
     # External plugins
+
+    #
+    'django_auto_logout',
 
     # django-two-factor-auth
     'django_otp',
@@ -184,6 +204,9 @@ INSTALLED_APPS = [
 
     # django-simple-menu
     'menu',
+
+    # django-robots
+    'robots',
 
     # local apps
     'core.users',
@@ -286,7 +309,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 # django-user-sessions https://github.com/jazzband/django-user-sessions
 SESSION_ENGINE = 'user_sessions.backends.db'
-SILENCED_SYSTEM_CHECKS = ['admin.E410',]
+SILENCED_SYSTEM_CHECKS = ['admin.E410', ]
 
 # django-simple-menu https://github.com/jazzband/django-simple-menu
 MENU_SELECT_PARENTS = True

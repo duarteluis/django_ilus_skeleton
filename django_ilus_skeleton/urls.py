@@ -14,13 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from two_factor.admin import AdminSiteOTPRequired
 from django.conf import settings
 
 from two_factor.urls import urlpatterns as tf_urls
 from apps.pages.urls import urlpatterns as pages_urls
 from core.users.urls import urlpatterns as users_urls
+
+from django.contrib.sitemaps.views import sitemap
+from apps.pages.sitemaps import PagesSitemap  # import StaticSitemap
+
+sitemaps = {
+    'static': PagesSitemap  # add StaticSitemap to the dictionary
+}
 
 
 admin.site.__class__ = AdminSiteOTPRequired
@@ -38,6 +45,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
+    re_path(r'^robots\.txt', include('robots.urls')),
 
 ]
 
