@@ -155,7 +155,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 from datetime import timedelta
 
 AUTO_LOGOUT = {
-    'IDLE_TIME': timedelta(minutes=20),
+    'IDLE_TIME': timedelta(minutes=2),
     'REDIRECT_TO_LOGIN_IMMEDIATELY': True,
     'SESSION_TIME': timedelta(hours=1),
 }

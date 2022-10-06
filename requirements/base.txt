@@ -1,10 +1,10 @@
 # https://docs.djangoproject.com/en/4.0/topics/auth/passwords/#using-argon2-with-django
-django[argon2]==4.0.5 # Argon2 for the password hashing
+django[argon2] # Argon2 for the password hashing
 
 # Plugins
-django-two-factor-auth[phonenumbers]==1.14.0 # https://github.com/jazzband/django-two-factor-auth
+django-two-factor-auth[phonenumbers] # https://github.com/jazzband/django-two-factor-auth
 django-otp-yubikey # https://github.com/jazzband/django-two-factor-auth
-django-axes==5.35.0 # https://github.com/jazzband/django-axes
+django-axes # https://github.com/jazzband/django-axes
 pwned-passwords-django # https://github.com/ubernostrum/pwned-passwords-django/
 django-bootstrap-v5 # https://github.com/zelenij/django-bootstrap-v5
 python-decouple # https://github.com/henriquebastos/python-decouple
@@ -14,3 +14,4 @@ django-auto-logout # https://github.com/bugov/django-auto-logout
 django-simple-menu # https://github.com/jazzband/django-simple-menu
 django-robots # https://github.com/jazzband/django-robots
 docutils # https://docutils.sourceforge.io
+pytz
