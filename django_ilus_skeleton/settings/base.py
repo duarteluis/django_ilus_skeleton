@@ -186,7 +186,7 @@ INSTALLED_APPS = [
     # ##################################
     # External plugins
 
-    #
+    # django-auto-logout
     'django_auto_logout',
 
     # django-two-factor-auth
@@ -207,6 +207,7 @@ INSTALLED_APPS = [
 
     # django-robots
     'robots',
+
 
     # local apps
     'core.users',
