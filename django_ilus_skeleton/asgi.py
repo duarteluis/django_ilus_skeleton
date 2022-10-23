@@ -1,5 +1,5 @@
 """
-ASGI config for django_ilus_skeleton project.
+ASGI django_ilus_skeleton for django_ilus_skeleton project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

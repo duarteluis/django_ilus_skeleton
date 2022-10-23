@@ -1,5 +1,5 @@
 """
-WSGI config for django_ilus_skeleton project.
+WSGI django_ilus_skeleton for django_ilus_skeleton project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

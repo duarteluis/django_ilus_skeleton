@@ -23,6 +23,10 @@ class CustomUserAdmin(UserAdmin):
         (None, {"fields": ("email", "password")}),
         ("Personal informations", {"fields": ("first_name", "last_name")}),
         ("Permissions", {"fields": ("is_staff", "is_active")}),
+        ('Group Permissions', {
+            'classes': ('collapse',),
+            'fields': ('groups', 'user_permissions',)
+        })
     )
     add_fieldsets = (
         (
